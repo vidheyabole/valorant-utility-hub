@@ -30,7 +30,7 @@ This tool serves competitive players, content creators, and casual players who n
 ## Screenshots
 
 ### Home Page
-![Home Page](screenshots/home page.png)
+![Home Page](screenshots/home.png)
 *Landing page with interactive statistics and maps modal*
 
 ### Interactive Maps Modal
