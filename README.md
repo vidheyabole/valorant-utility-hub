@@ -41,10 +41,6 @@ This tool serves competitive players, content creators, and casual players who n
 ![Lineups](screenshots/lineups.png)
 *Browse community lineups with multiple images and carousel navigation*
 
-### Lineup Image Carousel
-![Lineup Carousel](screenshots/lineups-carousel.png)
-*Multiple images showing position, crosshair placement, and result*
-
 ### Add Lineup with Multiple Images
 ![Add Lineup](screenshots/add-lineup.png)
 *Upload up to 5 images per lineup with preview*
@@ -57,13 +53,13 @@ This tool serves competitive players, content creators, and casual players who n
 ![Profile](screenshots/profile.png)
 *Personalized profiles with agent icons, rank badges, and statistics*
 
-### Search & Filter Functionality
-![Search & Filter](screenshots/search-filter.png)
-*Real-time search with smart filtering options*
+### Register Page
+![Private Content](screenshots/register-page.png)
+*Registe Page to register your profile*
 
-### Privacy Controls
-![Private Content](screenshots/private-badge.png)
-*Keep lineups and crosshairs private with visibility badges*
+### Login Page
+![Private Content](screenshots/login-page.png)
+*Log-in page*
 
 ## Features
 
