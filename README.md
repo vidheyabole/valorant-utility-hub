@@ -148,7 +148,7 @@ This tool serves competitive players, content creators, and casual players who n
 
 ### Step 1: Clone the Repository
 ```bash
-git clone [your-repo-url]
+git clone [https://github.com/vidheyabole/valorant-utility-hub.git]
 cd valorant-utility-hub
 ```
 
@@ -165,7 +165,7 @@ This installs:
 
 Create a `.env` file in the root directory:
 ```
-MONGODB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/valorant_hub?retryWrites=true&w=majority
+MONGODB_URI=mongodb+srv://valorant_admin:Vidhu@valoranthub.tasyzsq.mongodb.net/valorant_hub?appName=ValorantHub
 PORT=3000
 ```
 
@@ -182,7 +182,7 @@ PORT=3000
 npm run seed
 ```
 
-This populates the database with 10 sample records (5 lineups + 5 crosshairs).
+This populates the database with 10 sample records (1 lineup + 4 crosshairs).
 
 **Or skip seeding and add your own content through the UI.**
 
