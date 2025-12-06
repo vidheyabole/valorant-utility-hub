@@ -9,8 +9,8 @@ CS5610 Web Development
 Northeastern University
 
 ## Project Links
-- **Live Demo**: [Your Render URL - Add after deployment]
-- **GitHub Repository**: [Your GitHub URL - Add after pushing]
+- **Live Demo**: https://valorant-utility-hub.onrender.com
+- **GitHub Repository**: https://github.com/vidheyabole/valorant-utility-hub.git
 - **Demo Video**: https://www.youtube.com/watch?v=6tP94d5odiU
 
 ## Project Objective
