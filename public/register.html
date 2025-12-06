@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Valorant Utility Hub</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/auth.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="logo">VALORANT UTILITY HUB</h1>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/lineups.html">Lineups</a></li>
+          <li><a href="/crosshairs.html">Crosshairs</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="auth-container">
+      <div class="auth-card">
+        <h1>Create Account</h1>
+        <p class="auth-subtitle">Join the Valorant Utility Hub community</p>
+
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="username">Username *</label>
+            <input
+              type="text"
+              id="username"
+              required
+              placeholder="Choose a username"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password *</label>
+            <input
+              type="password"
+              id="password"
+              required
+              minlength="6"
+              placeholder="At least 6 characters"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password *</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              required
+              minlength="6"
+              placeholder="Re-enter password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="rank">Valorant Rank (optional)</label>
+            <select id="rank">
+              <option value="Unranked">Unranked</option>
+              <option value="Iron">Iron</option>
+              <option value="Bronze">Bronze</option>
+              <option value="Silver">Silver</option>
+              <option value="Gold">Gold</option>
+              <option value="Platinum">Platinum</option>
+              <option value="Diamond">Diamond</option>
+              <option value="Ascendant">Ascendant</option>
+              <option value="Immortal">Immortal</option>
+              <option value="Radiant">Radiant</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="favoriteAgent">Favorite Agent (optional)</label>
+            <select id="favoriteAgent">
+              <option value="">Select Agent</option>
+              <option value="Astra">Astra</option>
+              <option value="Breach">Breach</option>
+              <option value="Brimstone">Brimstone</option>
+              <option value="Chamber">Chamber</option>
+              <option value="Clove">Clove</option>
+              <option value="Cypher">Cypher</option>
+              <option value="Deadlock">Deadlock</option>
+              <option value="Fade">Fade</option>
+              <option value="Gekko">Gekko</option>
+              <option value="Harbor">Harbor</option>
+              <option value="Iso">Iso</option>
+              <option value="Jett">Jett</option>
+              <option value="KAY/O">KAY/O</option>
+              <option value="Killjoy">Killjoy</option>
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option>
+              <option value="Phoenix">Phoenix</option>
+              <option value="Raze">Raze</option>
+              <option value="Reyna">Reyna</option>
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Tejo">Tejo</option>
+              <option value="Veto">Veto</option>
+              <option value="Viper">Viper</option>
+              <option value="Vyse">Vyse</option>
+              <option value="Waylay">Waylay</option>
+              <option value="Yoru">Yoru</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Create Account
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>
+            Already have an account?
+            <a href="/login.html" class="auth-link">Login here</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      window.auth = {
+        isLoggedIn: () => localStorage.getItem('user') !== null,
+        getCurrentUser: () => {
+          const userStr = localStorage.getItem('user');
+          return userStr ? JSON.parse(userStr) : null;
+        },
+        saveUser: (user) => localStorage.setItem('user', JSON.stringify(user)),
+        clearUser: () => localStorage.removeItem('user')
+      };
+
+      const registerForm = document.getElementById('registerForm');
+      registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+
+        const userData = {
+          username: document.getElementById('username').value,
+          email: document.getElementById('email').value,
+          password: password,
+          rank: document.getElementById('rank').value,
+          favoriteAgent: document.getElementById('favoriteAgent').value,
+        };
+
+        try {
+          const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            alert('Registration successful! Please login.');
+            window.location.href = '/login.html';
+          } else {
+            alert(data.error || 'Registration failed');
+          }
+        } catch (error) {
+          console.error('Registration error:', error);
+          alert('An error occurred. Please try again.');
+        }
+      });
+    </script>
+  </body>
+</html>

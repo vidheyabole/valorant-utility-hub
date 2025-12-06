@@ -1,0 +1,29 @@
+{
+  "name": "valorant-utility-hub",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A utility hub for Valorant lineups and crosshairs with user authentication",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "seed": "node server/db/seed.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": ["valorant", "gaming", "utility"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.3.1",
+    "cors": "^2.8.5",
+    "bcrypt": "^5.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.1",
+    "nodemon": "^3.0.2"
+  }
+}

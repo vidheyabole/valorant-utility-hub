@@ -1,0 +1,77 @@
+/* Clickable stat cards */
+.stat-card.clickable {
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.stat-card.clickable:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 70, 85, 0.3);
+  border-color: var(--primary-color);
+}
+
+.stat-card.clickable .stat-number {
+  transition: color 0.3s;
+}
+
+.stat-card.clickable:hover .stat-number {
+  color: var(--primary-color);
+}
+
+/* Maps Modal */
+.modal-maps {
+  max-width: 900px;
+}
+
+.maps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.map-card {
+  background: var(--bg-dark);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.map-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(255, 70, 85, 0.3);
+}
+
+.map-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.map-name {
+  padding: 1rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  background: var(--bg-light);
+}
+
+.map-card:hover .map-name {
+  color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .maps-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  
+  .map-card img {
+    height: 100px;
+  }
+}

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lineups - Valorant Utility Hub</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/lineups.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="logo">VALORANT UTILITY HUB</h1>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/lineups.html" class="active">Lineups</a></li>
+          <li><a href="/crosshairs.html">Crosshairs</a></li>
+          <li id="authLinks"></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="page-header">
+        <h1>Lineup Library</h1>
+        <button class="btn btn-primary" id="addLineupBtn">
+          + Add New Lineup
+        </button>
+      </div>
+
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="🔍 Search lineups by map, agent, ability, or description..."
+        />
+      </div>
+
+      <div class="filters">
+        <select id="mapFilter" class="filter-select">
+          <option value="">All Maps</option>
+          <option value="Abyss">Abyss</option>
+          <option value="Ascent">Ascent</option>
+          <option value="Bind">Bind</option>
+          <option value="Breeze">Breeze</option>
+          <option value="Corrode">Corrode</option>
+          <option value="Fracture">Fracture</option>
+          <option value="Haven">Haven</option>
+          <option value="Icebox">Icebox</option>
+          <option value="Lotus">Lotus</option>
+          <option value="Pearl">Pearl</option>
+          <option value="Split">Split</option>
+          <option value="Sunset">Sunset</option>
+        </select>
+
+        <select id="agentFilter" class="filter-select">
+          <option value="">All Agents</option>
+          <option value="Astra">Astra</option>
+          <option value="Breach">Breach</option>
+          <option value="Brimstone">Brimstone</option>
+          <option value="Chamber">Chamber</option>
+          <option value="Clove">Clove</option>
+          <option value="Cypher">Cypher</option>
+          <option value="Deadlock">Deadlock</option>
+          <option value="Fade">Fade</option>
+          <option value="Gekko">Gekko</option>
+          <option value="Harbor">Harbor</option>
+          <option value="Iso">Iso</option>
+          <option value="Jett">Jett</option>
+          <option value="KAYO">Kayo</option>
+          <option value="Killjoy">Killjoy</option>
+          <option value="Neon">Neon</option>
+          <option value="Omen">Omen</option>
+          <option value="Phoenix">Phoenix</option>
+          <option value="Raze">Raze</option>
+          <option value="Reyna">Reyna</option>
+          <option value="Sage">Sage</option>
+          <option value="Skye">Skye</option>
+          <option value="Sova">Sova</option>
+          <option value="Tejo">Tejo</option>
+          <option value="Veto">Veto</option>
+          <option value="Viper">Viper</option>
+          <option value="Vyse">Vyse</option>
+          <option value="Waylay">Waylay</option>
+          <option value="Yoru">Yoru</option>
+        </select>
+
+        <select id="abilityFilter" class="filter-select">
+          <option value="">All Abilities</option>
+          <option value="Smoke">Smoke</option>
+          <option value="Molly">Molly</option>
+          <option value="Recon">Recon</option>
+          <option value="Flash">Flash</option>
+          <option value="Stun">Stun</option>
+          <option value="Fragment">Fragment</option>
+        </select>
+
+        <button class="btn btn-secondary" id="resetFilters">
+          Reset Filters
+        </button>
+      </div>
+
+      <div id="lineupCount" class="result-count"></div>
+
+      <div id="lineupsContainer" class="lineups-grid"></div>
+    </main>
+
+    <div id="lineupModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Add New Lineup</h2>
+        <form id="lineupForm">
+          <input type="hidden" id="lineupId" />
+
+          <div class="form-group">
+            <label for="lineupImages">Lineup Images (up to 5 images)</label>
+            <input type="file" id="lineupImages" accept="image/*" multiple />
+            <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+              Upload multiple images: position on map, crosshair placement, etc.
+            </small>
+            <div id="imagePreview" class="image-preview-grid"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupMap">Map *</label>
+            <select id="lineupMap" required>
+              <option value="">Select Map</option>
+              <option value="Abyss">Abyss</option>
+              <option value="Ascent">Ascent</option>
+              <option value="Bind">Bind</option>
+              <option value="Breeze">Breeze</option>
+              <option value="Corrode">Corrode</option>
+              <option value="Fracture">Fracture</option>
+              <option value="Haven">Haven</option>
+              <option value="Icebox">Icebox</option>
+              <option value="Lotus">Lotus</option>
+              <option value="Pearl">Pearl</option>
+              <option value="Split">Split</option>
+              <option value="Sunset">Sunset</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupAgent">Agent *</label>
+            <select id="lineupAgent" required>
+              <option value="Astra">Astra</option>
+              <option value="Breach">Breach</option>
+              <option value="Brimstone">Brimstone</option>
+              <option value="Chamber">Chamber</option>
+              <option value="Clove">Clove</option>
+              <option value="Cypher">Cypher</option>
+              <option value="Deadlock">Deadlock</option>
+              <option value="Fade">Fade</option>
+              <option value="Gekko">Gekko</option>
+              <option value="Harbor">Harbor</option>
+              <option value="Iso">Iso</option>
+              <option value="Jett">Jett</option>
+              <option value="KAYO">Kayo</option>
+              <option value="Killjoy">Killjoy</option>
+              <option value="Neon">Neon</option>
+              <option value="Omen">Omen</option>
+              <option value="Phoenix">Phoenix</option>
+              <option value="Raze">Raze</option>
+              <option value="Reyna">Reyna</option>
+              <option value="Sage">Sage</option>
+              <option value="Skye">Skye</option>
+              <option value="Sova">Sova</option>
+              <option value="Tejo">Tejo</option>
+              <option value="Veto">Veto</option>
+              <option value="Viper">Viper</option>
+              <option value="Vyse">Vyse</option>
+              <option value="Waylay">Waylay</option>
+              <option value="Yoru">Yoru</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupAbility">Ability *</label>
+            <select id="lineupAbility" required>
+              <option value="">Select Ability</option>
+              <option value="Smoke">Smoke</option>
+              <option value="Molly">Molly</option>
+              <option value="Recon">Recon</option>
+              <option value="Flash">Flash</option>
+              <option value="Stun">Stun</option>
+              <option value="Fragment">Fragment</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupSite">Site *</label>
+            <select id="lineupSite" required>
+              <option value="">Select Site</option>
+              <option value="A Site">A Site</option>
+              <option value="B Site">B Site</option>
+              <option value="C Site">C Site</option>
+              <option value="Mid">Mid</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupPosition">Position *</label>
+            <select id="lineupPosition" required>
+              <option value="">Select Position</option>
+              <option value="Attack">Attack</option>
+              <option value="Defense">Defense</option>
+              <option value="Retake">Retake</option>
+              <option value="Post-Plant">Post-Plant</option>
+              <option value="Execute">Execute</option>
+              <option value="Default">Default</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupThrowType">Throw Type</label>
+            <select id="lineupThrowType">
+              <option value="Standing Throw">Standing Throw</option>
+              <option value="Jump Throw">Jump Throw</option>
+              <option value="Run Throw">Run Throw</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupLandmark">Landmark</label>
+            <input
+              type="text"
+              id="lineupLandmark"
+              placeholder="e.g., Corner of the box"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="lineupDescription">Description *</label>
+            <textarea
+              id="lineupDescription"
+              rows="4"
+              required
+              placeholder="Detailed instructions for the lineup..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="lineupVideoUrl">Video URL (optional)</label>
+            <input
+              type="url"
+              id="lineupVideoUrl"
+              placeholder="https://youtube.com/..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="lineupAuthor">Author</label>
+            <input
+              type="text"
+              id="lineupAuthor"
+              placeholder="Your username"
+              readonly
+            />
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="lineupPrivate" />
+              🔒 Make this lineup private (only you can see it)
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancelBtn">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">Save Lineup</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      // Auth helper functions
+      window.auth = {
+        isLoggedIn: () => localStorage.getItem('user') !== null,
+        getCurrentUser: () => {
+          const userStr = localStorage.getItem('user');
+          return userStr ? JSON.parse(userStr) : null;
+        },
+        saveUser: (user) => localStorage.setItem('user', JSON.stringify(user)),
+        clearUser: () => localStorage.removeItem('user')
+      };
+
+      // Update navigation
+      const user = window.auth.getCurrentUser();
+      const authLinksContainer = document.getElementById('authLinks');
+
+      if (user) {
+        authLinksContainer.innerHTML = `
+          <li><a href="/profile.html">Profile</a></li>
+          <li><a href="#" id="navLogoutBtn">Logout</a></li>
+        `;
+
+        const logoutBtn = document.getElementById('navLogoutBtn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+              window.auth.clearUser();
+              window.location.href = '/';
+            }
+          });
+        }
+      } else {
+        authLinksContainer.innerHTML = `
+          <li><a href="/login.html">Login</a></li>
+          <li><a href="/register.html">Register</a></li>
+        `;
+      }
+    </script>
+    <script type="module" src="/js/lineups.js"></script>
+  </body>
+</html>

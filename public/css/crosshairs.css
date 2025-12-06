@@ -1,0 +1,271 @@
+.crosshairs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.crosshair-card {
+  background: var(--bg-light);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.crosshair-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 209, 255, 0.2);
+  border-color: var(--accent-color);
+}
+
+.crosshair-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+}
+
+.crosshair-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.crosshair-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.25rem;
+  transition: color 0.3s;
+}
+
+.icon-btn:hover {
+  color: var(--accent-color);
+}
+
+.icon-btn.delete:hover {
+  color: var(--danger);
+}
+
+.crosshair-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+.crosshair-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.crosshair-preview {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.crosshair-preview::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    transparent 48%,
+    rgba(255, 255, 255, 0.03) 49%,
+    rgba(255, 255, 255, 0.03) 51%,
+    transparent 52%
+  );
+}
+
+.crosshair-visual {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.crosshair-line {
+  position: absolute;
+  background-color: white;
+}
+
+.crosshair-line.top,
+.crosshair-line.bottom {
+  width: 2px;
+  height: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.crosshair-line.top {
+  top: 0;
+}
+
+.crosshair-line.bottom {
+  bottom: 0;
+}
+
+.crosshair-line.left,
+.crosshair-line.right {
+  height: 2px;
+  width: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.crosshair-line.left {
+  left: 0;
+}
+
+.crosshair-line.right {
+  right: 0;
+}
+
+.crosshair-center-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: white;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.crosshair-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+}
+
+.tag {
+  background-color: var(--bg-dark);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  border: 1px solid var(--border-color);
+}
+
+.tag.category {
+  background-color: rgba(0, 209, 255, 0.1);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.tag.color {
+  background-color: rgba(255, 70, 85, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.crosshair-code {
+  background-color: var(--bg-dark);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--success);
+  word-break: break-all;
+  margin: 0 1.5rem 1rem 1.5rem;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.crosshair-code:hover {
+  background-color: rgba(0, 255, 136, 0.05);
+}
+
+.crosshair-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  padding: 0 1.5rem;
+}
+
+.crosshair-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.copy-btn {
+  background-color: var(--success);
+  color: var(--bg-dark);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.copy-btn:hover {
+  background-color: #00cc77;
+  transform: scale(1.05);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+  grid-column: 1 / -1;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.empty-state p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .crosshairs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Privacy badge */
+.tag.private {
+  background-color: rgba(255, 215, 0, 0.1);
+  border-color: var(--warning);
+  color: var(--warning);
+}

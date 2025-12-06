@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crosshairs - Valorant Utility Hub</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/crosshairs.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="logo">VALORANT UTILITY HUB</h1>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/lineups.html">Lineups</a></li>
+          <li><a href="/crosshairs.html" class="active">Crosshairs</a></li>
+          <li id="authLinks"></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="page-header">
+        <h1>Crosshair Gallery</h1>
+        <button class="btn btn-primary" id="addCrosshairBtn">
+          + Add New Crosshair
+        </button>
+      </div>
+
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="🔍 Search crosshairs by name, category, or description..."
+        />
+      </div>
+
+      <div class="filters">
+        <select id="categoryFilter" class="filter-select">
+          <option value="">All Categories</option>
+          <option value="Pro Player">Pro Player</option>
+          <option value="Minimal">Minimal</option>
+          <option value="Dot Only">Dot Only</option>
+          <option value="Classic">Classic</option>
+          <option value="Fun/Meme">Fun/Meme</option>
+        </select>
+
+        <select id="colorFilter" class="filter-select">
+          <option value="">All Colors</option>
+          <option value="White">White</option>
+          <option value="Green">Green</option>
+          <option value="Yellow">Yellow</option>
+          <option value="Cyan">Cyan</option>
+          <option value="Red">Red</option>
+          <option value="Pink">Pink</option>
+          <option value="Purple">Purple</option>
+          <option value="Blue">Blue</option>
+        </select>
+
+        <button class="btn btn-secondary" id="resetFilters">
+          Reset Filters
+        </button>
+      </div>
+
+      <div id="crosshairCount" class="result-count"></div>
+
+      <div id="crosshairsContainer" class="crosshairs-grid"></div>
+    </main>
+
+    <div id="crosshairModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Add New Crosshair</h2>
+        <form id="crosshairForm">
+          <input type="hidden" id="crosshairId" />
+
+          <div class="form-group">
+            <label for="crosshairImage">Crosshair Screenshot (optional)</label>
+            <input type="file" id="crosshairImage" accept="image/*" />
+            <div id="imagePreview" class="image-preview"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairName">Name *</label>
+            <input
+              type="text"
+              id="crosshairName"
+              required
+              placeholder="e.g., TenZ Crosshair"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairCode">Crosshair Code *</label>
+            <input
+              type="text"
+              id="crosshairCode"
+              required
+              placeholder="0;P;c;5;o;1;d;1;..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairCategory">Category *</label>
+            <select id="crosshairCategory" required>
+              <option value="">Select Category</option>
+              <option value="Pro Player">Pro Player</option>
+              <option value="Minimal">Minimal</option>
+              <option value="Dot Only">Dot Only</option>
+              <option value="Classic">Classic</option>
+              <option value="Fun/Meme">Fun/Meme</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairColor">Color *</label>
+            <select id="crosshairColor" required>
+              <option value="">Select Color</option>
+              <option value="White">White</option>
+              <option value="Green">Green</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Cyan">Cyan</option>
+              <option value="Red">Red</option>
+              <option value="Pink">Pink</option>
+              <option value="Purple">Purple</option>
+              <option value="Blue">Blue</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairThickness">Thickness (1-5)</label>
+            <input
+              type="number"
+              id="crosshairThickness"
+              min="1"
+              max="5"
+              value="2"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairLength">Length (2-12)</label>
+            <input
+              type="number"
+              id="crosshairLength"
+              min="2"
+              max="12"
+              value="6"
+            />
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="crosshairCenterDot" />
+              Center Dot
+            </label>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="crosshairOutlines" />
+              Outlines
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairDescription">Description</label>
+            <textarea
+              id="crosshairDescription"
+              rows="3"
+              placeholder="Details about this crosshair..."
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="crosshairAuthor">Author</label>
+            <input
+              type="text"
+              id="crosshairAuthor"
+              placeholder="Your username"
+              readonly
+            />
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="crosshairPrivate" />
+              🔒 Make this crosshair private (only you can see it)
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="cancelBtn">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Save Crosshair
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      // Auth helper functions
+      window.auth = {
+        isLoggedIn: () => localStorage.getItem('user') !== null,
+        getCurrentUser: () => {
+          const userStr = localStorage.getItem('user');
+          return userStr ? JSON.parse(userStr) : null;
+        },
+        saveUser: (user) => localStorage.setItem('user', JSON.stringify(user)),
+        clearUser: () => localStorage.removeItem('user')
+      };
+
+      // Update navigation
+      const user = window.auth.getCurrentUser();
+      const authLinksContainer = document.getElementById('authLinks');
+
+      if (user) {
+        authLinksContainer.innerHTML = `
+          <li><a href="/profile.html">Profile</a></li>
+          <li><a href="#" id="navLogoutBtn">Logout</a></li>
+        `;
+
+        const logoutBtn = document.getElementById('navLogoutBtn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+              window.auth.clearUser();
+              window.location.href = '/';
+            }
+          });
+        }
+      } else {
+        authLinksContainer.innerHTML = `
+          <li><a href="/login.html">Login</a></li>
+          <li><a href="/register.html">Register</a></li>
+        `;
+      }
+    </script>
+    <script type="module" src="/js/crosshairs.js"></script>
+  </body>
+</html>

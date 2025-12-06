@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Valorant Utility Hub</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/auth.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="logo">VALORANT UTILITY HUB</h1>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/lineups.html">Lineups</a></li>
+          <li><a href="/crosshairs.html">Crosshairs</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="auth-container">
+      <div class="auth-card">
+        <h1>Welcome Back</h1>
+        <p class="auth-subtitle">Login to manage your lineups and crosshairs</p>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="your@email.com"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Login
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>
+            Don't have an account?
+            <a href="/register.html" class="auth-link">Register here</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      // Auth helper functions
+      window.auth = {
+        isLoggedIn: () => localStorage.getItem('user') !== null,
+        getCurrentUser: () => {
+          const userStr = localStorage.getItem('user');
+          return userStr ? JSON.parse(userStr) : null;
+        },
+        saveUser: (user) => localStorage.setItem('user', JSON.stringify(user)),
+        clearUser: () => localStorage.removeItem('user')
+      };
+
+      const loginForm = document.getElementById('loginForm');
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+          const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            window.auth.saveUser(data.user);
+            alert('Login successful!');
+            window.location.href = '/';
+          } else {
+            alert(data.error || 'Login failed');
+          }
+        } catch (error) {
+          console.error('Login error:', error);
+          alert('An error occurred. Please try again.');
+        }
+      });
+    </script>
+  </body>
+</html>

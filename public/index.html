@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valorant Utility Hub - Home</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <h1 class="logo">VALORANT UTILITY HUB</h1>
+        <ul class="nav-links">
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/lineups.html">Lineups</a></li>
+          <li><a href="/crosshairs.html">Crosshairs</a></li>
+          <li id="authLinks"></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Your Ultimate Valorant Utility Database</h1>
+          <p class="hero-description">
+            Master every map with professional lineups and find the perfect
+            crosshair for your playstyle.
+          </p>
+
+          <div class="hero-cards">
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3>Community Lineups</h3>
+              <p>
+                Access lineups shared by the community with multiple images showing exact positions and crosshair placements.
+              </p>
+              <a href="/lineups.html" class="btn btn-primary">Browse Lineups</a>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">✨</div>
+              <h3>Pro Crosshairs</h3>
+              <p>
+                Explore crosshair configurations from professional players with visual previews and instant copy.
+              </p>
+              <a href="/crosshairs.html" class="btn btn-primary">View Crosshairs</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <h2>Platform Statistics</h2>
+          <div class="stats-grid">
+            <a href="/lineups.html" class="stat-card clickable" title="View all lineups">
+              <div class="stat-number" id="totalLineups">-</div>
+              <div class="stat-label">Total Lineups</div>
+            </a>
+            <a href="/crosshairs.html" class="stat-card clickable" title="View all crosshairs">
+              <div class="stat-number" id="totalCrosshairs">-</div>
+              <div class="stat-label">Total Crosshairs</div>
+            </a>
+            <div class="stat-card clickable" id="mapsCard" title="Browse by map">
+              <div class="stat-number">12</div>
+              <div class="stat-label">Maps Covered</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">28</div>
+              <div class="stat-label">Agents Supported</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-section">
+          <h2>Why Use Utility Hub?</h2>
+          <div class="features-grid">
+            <div class="feature-item">
+              <h4>📍 Multiple Images Per Lineup</h4>
+              <p>
+                Every lineup can have up to 5 images showing position, crosshair placement, and results.
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>🎨 Visual Previews</h4>
+              <p>
+                See exactly how your crosshair looks before applying it in-game.
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>🔍 Smart Search</h4>
+              <p>
+                Real-time search and filtering to quickly find exactly what you need.
+              </p>
+            </div>
+            <div class="feature-item">
+              <h4>👤 Personal Profiles</h4>
+              <p>
+                Create an account to track your contributions and manage your utilities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Maps Modal -->
+    <div id="mapsModal" class="modal">
+      <div class="modal-content modal-maps">
+        <span class="close">&times;</span>
+        <h2>Browse Maps</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Click on any map to view its lineups</p>
+        
+        <div class="maps-grid">
+          <div class="map-card" data-map="Abyss">
+            <img src="/images/maps/abyss.png" alt="Abyss" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Abyss'" />
+            <div class="map-name">Abyss</div>
+          </div>
+          <div class="map-card" data-map="Ascent">
+            <img src="/images/maps/ascent.png" alt="Ascent" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Ascent'" />
+            <div class="map-name">Ascent</div>
+          </div>
+          <div class="map-card" data-map="Bind">
+            <img src="/images/maps/bind.png" alt="Bind" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Bind'" />
+            <div class="map-name">Bind</div>
+          </div>
+          <div class="map-card" data-map="Breeze">
+            <img src="/images/maps/breeze.png" alt="Breeze" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Breeze'" />
+            <div class="map-name">Breeze</div>
+          </div>
+          <div class="map-card" data-map="Corrode">
+            <img src="/images/maps/corrode.png" alt="Corrode" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Corrode'" />
+            <div class="map-name">Corrode</div>
+          </div>
+          <div class="map-card" data-map="Fracture">
+            <img src="/images/maps/fracture.png" alt="Fracture" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Fracture'" />
+            <div class="map-name">Fracture</div>
+          </div>
+          <div class="map-card" data-map="Haven">
+            <img src="/images/maps/haven.png" alt="Haven" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Haven'" />
+            <div class="map-name">Haven</div>
+          </div>
+          <div class="map-card" data-map="Icebox">
+            <img src="/images/maps/icebox.png" alt="Icebox" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Icebox'" />
+            <div class="map-name">Icebox</div>
+          </div>
+          <div class="map-card" data-map="Lotus">
+            <img src="/images/maps/lotus.png" alt="Lotus" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Lotus'" />
+            <div class="map-name">Lotus</div>
+          </div>
+          <div class="map-card" data-map="Pearl">
+            <img src="/images/maps/pearl.png" alt="Pearl" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Pearl'" />
+            <div class="map-name">Pearl</div>
+          </div>
+          <div class="map-card" data-map="Split">
+            <img src="/images/maps/split.png" alt="Split" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Split'" />
+            <div class="map-name">Split</div>
+          </div>
+          <div class="map-card" data-map="Sunset">
+            <img src="/images/maps/sunset.png" alt="Sunset" onerror="this.src='https://via.placeholder.com/300x200/0f1923/ff4655?text=Sunset'" />
+            <div class="map-name">Sunset</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2024 Valorant Utility Hub | Made for CS5610 Web Development |
+          Not affiliated with Riot Games
+        </p>
+      </div>
+    </footer>
+
+    <script type="module">
+      const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
+      const authLinksContainer = document.getElementById('authLinks');
+
+      if (user) {
+        authLinksContainer.innerHTML = `
+          <li><a href="/profile.html">Profile (${user.username})</a></li>
+          <li><a href="#" id="logoutBtn">Logout</a></li>
+        `;
+
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+          e.preventDefault();
+          if (confirm('Are you sure you want to logout?')) {
+            localStorage.removeItem('user');
+            window.location.reload();
+          }
+        });
+      } else {
+        authLinksContainer.innerHTML = `
+          <li><a href="/login.html">Login</a></li>
+          <li><a href="/register.html">Register</a></li>
+        `;
+      }
+
+      async function loadStats() {
+        try {
+          const [lineupStats, crosshairStats] = await Promise.all([
+            fetch('/api/lineups/stats').then((r) => r.json()),
+            fetch('/api/crosshairs/stats').then((r) => r.json()),
+          ]);
+
+          document.getElementById('totalLineups').textContent =
+            lineupStats.total || 0;
+          document.getElementById('totalCrosshairs').textContent =
+            crosshairStats.total || 0;
+        } catch (error) {
+          console.error('Error loading stats:', error);
+        }
+      }
+
+      loadStats();
+
+      // Maps modal functionality
+      const mapsModal = document.getElementById('mapsModal');
+      const mapsCard = document.getElementById('mapsCard');
+      const closeBtn = document.querySelector('#mapsModal .close');
+      const mapsGrid = document.querySelector('.maps-grid');
+
+      mapsCard.addEventListener('click', () => {
+        mapsModal.style.display = 'block';
+      });
+
+      closeBtn.addEventListener('click', () => {
+        mapsModal.style.display = 'none';
+      });
+
+      window.addEventListener('click', (e) => {
+        if (e.target === mapsModal) {
+          mapsModal.style.display = 'none';
+        }
+      });
+
+      // Map card click - redirect to lineups filtered by map
+      mapsGrid.addEventListener('click', (e) => {
+        const mapCard = e.target.closest('.map-card');
+        if (mapCard) {
+          const mapName = mapCard.dataset.map;
+          window.location.href = `/lineups.html?map=${mapName}`;
+        }
+      });
+    </script>
+  </body>
+</html>
